@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<title>Lista de Produtos</title>
+</h:head>
+<h:body>
+	<!-- Usado nesse projeto https://www.primefaces.org/showcase/ui/data/dataGrid.xhtml -->
+	<h:form id="form" prependId="false">
+		<p:dataGrid var="list" value="#{listaProduto.lista.data}" columns="3"
+			layout="grid" rows="12" paginator="true" id="cars"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="6,12,16">
+
+			<f:facet name="header">
+            Produtos
+        </f:facet>
+
+			<p:panel header="#{list.name}" style="text-align:center">
+				<h:panelGrid columns="1" style="width:100%">
+
+					<img
+						src="https://s3-us-west-2.amazonaws.com/ib.image.small/s-#{list.thumb}" />
+
+					<h:outputText value="#{list.pc.get(0).valid_price}">
+						<f:convertNumber type="currency" maxFractionDigits="2" />
+					</h:outputText>
+
+					<p:commandLink update=":form:ListDetail" 
+						oncomplete="PF('viewlistDialog').show()" title="View Detail">
+						<h:outputText styleClass="ui-icon ui-icon-search"
+							style="margin:0 auto;" />
+						<f:setPropertyActionListener value="#{list}"
+							target="#{listaProduto.selecionado}" />
+					</p:commandLink>
+				</h:panelGrid>
+			</p:panel>
+		</p:dataGrid>
+		
+		<p:dialog header="#{listaProduto.selecionado.name}"
+			widgetVar="viewlistDialog" height="450" showEffect="explode" hideEffect="bounce" >
+			<p:outputPanel id="ListDetail" style="text-align:center;">
+				<center>
+					<img
+						src="https://s3-us-west-2.amazonaws.com/ib.image.medium/m-#{listaProduto.selecionado.thumb}" />
+				</center>
+				<p:panelGrid columns="2"
+					rendered="#{not empty listaProduto.selecionado}"
+					columnClasses="label,value">
+
+					<h:outputText value="Id:" />
+					<h:outputText value="#{listaProduto.selecionado.id}" />
+					<h:outputText value="Name:" />
+					<h:outputText value="#{listaProduto.selecionado.name}" />
+					<h:outputText value="Marca:" />
+					<h:outputText value="#{listaProduto.selecionado.brand}" />
+					<h:outputText value="Preço:" />
+					<h:outputText value="#{listaProduto.selecionado.pc.get(0).price}">
+						<f:convertNumber type="currency" maxFractionDigits="2"
+							locale="pt_BR" />
+					</h:outputText>
+
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
