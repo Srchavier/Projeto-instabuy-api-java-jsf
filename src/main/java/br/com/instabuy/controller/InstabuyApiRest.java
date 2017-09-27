@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
@@ -37,8 +36,8 @@ public class InstabuyApiRest {
 		return null;
 
 	}
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		InstabuyApiRest is = new InstabuyApiRest();
 		ListEntity ff = is.lista();
 		System.out.println(ff.getStatus());
