@@ -34,7 +34,6 @@ public class InstabuyApiRest {
 		}
 		System.out.println("erro, sua classe está null!!!!");
 		return null;
-
 	}
 
 	public static void main(String[] args) {
