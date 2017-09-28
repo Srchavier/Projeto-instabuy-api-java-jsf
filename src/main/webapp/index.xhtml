@@ -13,7 +13,7 @@
 	<!-- Usado nesse projeto https://www.primefaces.org/showcase/ui/data/dataGrid.xhtml -->
 	<h:form id="form" prependId="false">
 		<p:dataGrid var="list" value="#{listaProduto.lista.data}" columns="3"
-			layout="grid" rows="12" paginator="true" id="cars"
+			layout="grid" rows="12" paginator="true" id="list"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="6,12,16">
 
@@ -42,8 +42,8 @@
 			</p:panel>
 		</p:dataGrid>
 		
-		<p:dialog header="#{listaProduto.selecionado.name}"
-			widgetVar="viewlistDialog" height="450" showEffect="explode" hideEffect="bounce" >
+		<p:dialog header="Descriçao do produto" 
+			widgetVar="viewlistDialog" height="450" showEffect="explode" hideEffect="bounce">
 			<p:outputPanel id="ListDetail" style="text-align:center;">
 				<center>
 					<img
